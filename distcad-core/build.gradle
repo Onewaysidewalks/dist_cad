@@ -1,0 +1,5 @@
+dependencies {
+    compile 'com.hubspot.dropwizard:dropwizard-guice:0.8.4.0'
+
+    compile "org.projectlombok:lombok:1.16.6"
+}

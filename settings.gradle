@@ -1,0 +1,10 @@
+rootProject.name = "distcad"
+include "coordinator"
+include 'coordinator-models'
+
+include "agent"
+include 'agent-models'
+include 'distcad-core'
+include 'distcad-data-job-core'
+include 'distcad-data-job-inmemory'
+

@@ -1,0 +1,15 @@
+group "ninja.onewaysidewalks"
+
+allprojects {
+    group 'ninja.onewaysidewalks'
+    version 'unspecified'
+
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}

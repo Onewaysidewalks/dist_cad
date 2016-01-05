@@ -1,0 +1,8 @@
+dependencies {
+
+    compile project(":agent-models")
+
+    compile project(":distcad-core")
+
+    compile project(":distcad-data-job-inmemory") //FOR DEVELOPMENT ONLY, REMOVE
+}

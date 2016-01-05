@@ -1,0 +1,1 @@
+# This is an in memory implementation of the job persistence layer. Should be used for testing/development purposes only!

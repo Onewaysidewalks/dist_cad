@@ -1,0 +1,1 @@
+# This is the core data library. Other modules should take a dependency on this, and register ways to resolve the persistence-based interfaces (e.g. JobReader -> InMemoryJobReader)
