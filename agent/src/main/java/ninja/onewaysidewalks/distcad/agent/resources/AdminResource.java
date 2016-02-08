@@ -8,5 +8,6 @@ import javax.ws.rs.Produces;
 
 public interface AdminResource {
 
+
     Object getState();
 }
