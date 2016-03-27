@@ -1,13 +1,48 @@
 package ninja.onewaysidewalks.distcad.agent.resources;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import lombok.extern.slf4j.Slf4j;
+import ninja.onewaysidewalks.distcad.agent.models.AgentState;
+import javax.inject.Inject;
+import javax.ws.rs.*;
 
+@Path("/agent")
+@Produces("application/json")
+@Consumes("application/json")
+@Slf4j
+public class AdminResource {
 
-public interface AdminResource {
+    private final AgentState agentState;
 
+    @Inject
+    public AdminResource(AgentState agentState) {
+        this.agentState = agentState;
+    }
 
-    Object getState();
+    @Path("/state")
+    @GET
+    public AgentState getState() {
+        return agentState;
+    }
+
+    @Path("/stop_work")
+    @POST
+    public AgentState stopWork() {
+
+        log.info("Disallowing agent to work....");
+
+        agentState.setAllowedToWork(false);
+
+        return agentState;
+    }
+
+    @Path("/start_work")
+    @POST
+    public AgentState startWork() {
+
+        log.info("Allowing agent to work....");
+
+        agentState.setAllowedToWork(true);
+
+        return agentState;
+    }
 }

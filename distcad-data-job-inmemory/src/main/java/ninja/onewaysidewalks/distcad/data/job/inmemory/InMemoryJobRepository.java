@@ -24,7 +24,7 @@ public class InMemoryJobRepository {
         }
 
         @Override
-        public Job[] listByAgent(final String agentId) {
+        public List<Job> listByAgent(final String agentId) {
 
             log.info("looking for jobs with agent id: " + agentId);
 
@@ -36,7 +36,7 @@ public class InMemoryJobRepository {
                 }
             });
 
-            return jobList.toArray(new Job[jobList.size()]);
+            return jobList;
         }
     }
 

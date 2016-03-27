@@ -1,6 +1,5 @@
 package ninja.onewaysidewalks.distcad.core.guice;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.Module;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;

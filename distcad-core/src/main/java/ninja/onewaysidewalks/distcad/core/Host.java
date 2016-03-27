@@ -1,7 +1,9 @@
 package ninja.onewaysidewalks.distcad.core;
 
 import ch.qos.logback.classic.Level;
+import com.google.inject.Injector;
 import com.google.inject.Module;
+import com.google.inject.Provider;
 import com.hubspot.dropwizard.guice.GuiceBundle;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Host<T extends Configuration> extends Application<T> {
+
+    protected Provider<Injector> injectorProvider;
 
     private List<Module> specifiedModules = new ArrayList<>();
 
@@ -35,7 +39,11 @@ public abstract class Host<T extends Configuration> extends Application<T> {
 
         specifiedModules.forEach(guiceBundleBuilder::addModule);
 
-        bootstrap.addBundle(guiceBundleBuilder.build());
+        GuiceBundle<T> guiceBundle = guiceBundleBuilder.build();
+
+        injectorProvider = guiceBundle::getInjector;
+
+        bootstrap.addBundle(guiceBundle);
     }
 
     public abstract List<String> packagesForAutoConfig();

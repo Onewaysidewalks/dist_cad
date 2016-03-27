@@ -1,6 +1,8 @@
 package ninja.onewaysidewalks.distcad.data.job.core;
 
+import java.util.List;
+
 public interface JobReader {
     Job getById(String id);
-    Job[] listByAgent(String agentId);
+    List<Job> listByAgent(String agentId);
 }

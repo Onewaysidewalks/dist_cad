@@ -1,19 +1,13 @@
 package ninja.onewaysidewalks.distcad.agent;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import ninja.onewaysidewalks.distcad.agent.resources.AdminResource;
-import ninja.onewaysidewalks.distcad.agent.resources.AdminResourceImpl;
+import ninja.onewaysidewalks.distcad.agent.models.AgentState;
 import ninja.onewaysidewalks.distcad.core.Host;
-import ninja.onewaysidewalks.distcad.data.job.core.JobReader;
-import ninja.onewaysidewalks.distcad.data.job.inmemory.DataModule;
-import ninja.onewaysidewalks.distcad.data.job.inmemory.InMemoryJobRepository;
 
-import javax.inject.Singleton;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class AgentHost extends Host<ServiceConfig> {
 
@@ -23,27 +17,12 @@ public class AgentHost extends Host<ServiceConfig> {
 
     @Override
     public void initialize(Bootstrap<ServiceConfig> bootstrap) {
-
-//        withModule(new AbstractModule() {
-//            @Override
-//            protected void configure() {
-////                bind(JobReader.class).toInstance(new InMemoryJobRepository.InMemoryJobReader());
-//            }
-//
-//            @Provides
-//            @Singleton
-//            public JobReader jobReader() {
-//                return new InMemoryJobRepository.InMemoryJobReader();
-//            }
-//        });
-
         super.initialize(bootstrap);
     }
 
     @Override
     public void run(ServiceConfig configuration, Environment environment) throws Exception {
-
-//        environment.jersey().register(AdminResourceImpl.class);
+        injectorProvider.get().getInstance(AgentState.class).setId(UUID.randomUUID().toString());
 
         super.run(configuration, environment);
     }
